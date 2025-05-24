@@ -1,0 +1,43 @@
+# Build
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/
+
+# Mac/Linux
+.DS_Store
+
+# Visual Studio
+.vs/
+*.dbmdl
+*.log
+
+# dotnet artifacts
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# NuGet
+*.nupkg
+packages/
+*.snupkg
+*.nuspec
+
+# Logs
+*.log
+Logs/
+
+# Environment secrets
+.env
+
+# Others
+Thumbs.db

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Cansat")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f3a085f786a21aee48503bd8ea74bbb21f0ab9d7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fbea8a04539d90d2e284938d02ad344fcc1ab31c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Cansat")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Cansat")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
