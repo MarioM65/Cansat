@@ -1,43 +1,38 @@
-# Build
+# Build folders
 bin/
 obj/
 out/
 
+# Rider / VS Code / Visual Studio
+.vscode/
+.idea/
+.vs/
+
 # User-specific files
 *.user
-*.rsuser
 *.suo
 *.userosscache
 *.sln.docstates
 
-# VS Code
-.vscode/
-
-# Mac/Linux
+# OS generated files
 .DS_Store
+Thumbs.db
 
-# Visual Studio
-.vs/
-*.dbmdl
+# Log files
 *.log
+
+# Environment
+.env
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
 
 # dotnet artifacts
 project.lock.json
 project.fragment.lock.json
 artifacts/
 
-# NuGet
-*.nupkg
-packages/
-*.snupkg
-*.nuspec
-
-# Logs
-*.log
-Logs/
-
-# Environment secrets
-.env
-
 # Others
-Thumbs.db
+Logs/
