@@ -1,0 +1,6 @@
+@Cansat_HostAddress = http://localhost:5082
+
+GET {{Cansat_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
