@@ -1,0 +1,125 @@
+{
+  "version": 3,
+  "targets": {
+    "net9.0-windows7.0": {
+      "MessageBox/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net461/Gat.Controls.MessageBox.dll": {}
+        },
+        "runtime": {
+          "lib/net461/Gat.Controls.MessageBox.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MessageBox/2.1.0": {
+      "sha512": "nhzMuxq7TPMs4q5XkEawAPiKmxnhVOtWd65/bjqnLvFyuApdB1+OObtF6cecAFn5eFuJV9gljXQzFABFDKGEeQ==",
+      "type": "package",
+      "path": "messagebox/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License.txt",
+        "lib/net35/Gat.Controls.MessageBox.dll",
+        "lib/net40/Gat.Controls.MessageBox.dll",
+        "lib/net45/Gat.Controls.MessageBox.dll",
+        "lib/net451/Gat.Controls.MessageBox.dll",
+        "lib/net452/Gat.Controls.MessageBox.dll",
+        "lib/net46/Gat.Controls.MessageBox.dll",
+        "lib/net461/Gat.Controls.MessageBox.dll",
+        "messagebox.2.1.0.nupkg.sha512",
+        "messagebox.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net9.0-windows7.0": [
+      "MessageBox >= 2.1.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\mario\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\mario\\Cansat\\janela\\Janela.csproj",
+      "projectName": "Janela",
+      "projectPath": "C:\\Users\\mario\\Cansat\\janela\\Janela.csproj",
+      "packagesPath": "C:\\Users\\mario\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mario\\Cansat\\janela\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\mario\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net9.0-windows"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net9.0-windows7.0": {
+          "targetAlias": "net9.0-windows",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.200"
+    },
+    "frameworks": {
+      "net9.0-windows7.0": {
+        "targetAlias": "net9.0-windows",
+        "dependencies": {
+          "MessageBox": {
+            "target": "Package",
+            "version": "[2.1.0, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.204/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MessageBox 2.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "MessageBox",
+      "targetGraphs": [
+        "net9.0-windows7.0"
+      ]
+    }
+  ]
+}
