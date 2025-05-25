@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pc\\mario\\Cansat\\app\\APP.csproj": {}
+    "C:\\Users\\pc\\mario\\Cansat\\APP\\APP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pc\\mario\\Cansat\\app\\APP.csproj": {
+    "C:\\Users\\pc\\mario\\Cansat\\APP\\APP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pc\\mario\\Cansat\\app\\APP.csproj",
+        "projectUniqueName": "C:\\Users\\pc\\mario\\Cansat\\APP\\APP.csproj",
         "projectName": "APP",
-        "projectPath": "C:\\Users\\pc\\mario\\Cansat\\app\\APP.csproj",
+        "projectPath": "C:\\Users\\pc\\mario\\Cansat\\APP\\APP.csproj",
         "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pc\\mario\\Cansat\\app\\obj\\",
+        "outputPath": "C:\\Users\\pc\\mario\\Cansat\\APP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -44,9 +44,9 @@
         "net9.0-windows7.0": {
           "targetAlias": "net9.0-windows",
           "dependencies": {
-            "LiveCharts.Wpf": {
+            "LiveChartsCore.SkiaSharpView.WPF": {
               "target": "Package",
-              "version": "[0.9.7, )"
+              "version": "[2.0.0-rc5.4, )"
             }
           },
           "imports": [

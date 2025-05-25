@@ -15,7 +15,8 @@ namespace Cansat.Controllers
     {
         private string GetConnectionString()
         {
-            string dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Databases", "Sensoresaccdb.accdb");
+string dbPath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "Databases", "Sensoresaccdb.accdb");
+dbPath = Path.GetFullPath(dbPath);
             return $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={dbPath};Persist Security Info=False;";
         }
 
