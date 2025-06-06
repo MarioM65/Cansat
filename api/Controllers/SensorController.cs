@@ -5,7 +5,6 @@ using System.Linq;
 using System;
 using System.Data.OleDb;
 using System.IO;
-
 namespace Cansat.Controllers
 {
     [ApiController]
@@ -15,20 +14,16 @@ namespace Cansat.Controllers
     {
         private string GetConnectionString()
         {
-string dbPath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "Databases", "Sensoresaccdb.accdb");
-dbPath = Path.GetFullPath(dbPath);
+            string dbPath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "Databases", "Sensoresaccdb.accdb");
+            dbPath = Path.GetFullPath(dbPath);
             return $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={dbPath};Persist Security Info=False;";
         }
-
         private List<Sensor> GetSensoresFromDb(bool? deleted = null)
-        {
-            var sensores = new List<Sensor>();
+        {   var sensores = new List<Sensor>();
             string connString = GetConnectionString();
             string query = "SELECT * FROM sensor";
-
             if (deleted != null)
                 query += $" WHERE deleted={(deleted.Value ? -1 : 0)}";
-
             using (var connection = new OleDbConnection(connString))
             {
                 connection.Open();
@@ -51,7 +46,6 @@ dbPath = Path.GetFullPath(dbPath);
             }
             return sensores;
         }
-
         private bool ExecuteNonQuery(string query, Dictionary<string, object> parameters)
         {
             using (var connection = new OleDbConnection(GetConnectionString()))
@@ -66,55 +60,35 @@ dbPath = Path.GetFullPath(dbPath);
                 }
             }
         }
-[HttpGet("grouped/lasts")]
-public ActionResult<IEnumerable<object>> GetGroupedLasts()
-{
-    var sensores = GetSensoresFromDb(deleted: false);
+        [HttpGet("grouped/lasts")]
+        public ActionResult<IEnumerable<object>> GetGroupedLasts()
+        {var sensores = GetSensoresFromDb(deleted: false);
+            var agrupados = sensores.GroupBy(s => s.Tipo).Select(g => new
+                { Tipo = g.Key,UltimoSensor = g.OrderByDescending(s => s.Id).First()
+                });
+            return Ok(agrupados);
+        }
+        [HttpGet("grouped")]
+        public ActionResult<IEnumerable<object>> GetGroupedAll()
+        { var sensores = GetSensoresFromDb(deleted: false);
+            var agrupados = sensores .GroupBy(s => s.Tipo).Select(g => new
+                {
+                    Tipo = g.Key,
+                    Sensores = g.OrderBy(s => s.medido_em).ToList()
+                });
 
-    var agrupados = sensores
-        .GroupBy(s => s.Tipo)
-        .Select(g => new
-        {
-            Tipo = g.Key,
-            UltimoSensor = g
-                .OrderByDescending(s => s.Id)
-                .First()
-        });
-
-    return Ok(agrupados);
-}
-
-[HttpGet("grouped")]
-public ActionResult<IEnumerable<object>> GetGroupedAll()
-{
-    var sensores = GetSensoresFromDb(deleted: false);
-
-    var agrupados = sensores
-        .GroupBy(s => s.Tipo)
-        .Select(g => new
-        {
-            Tipo = g.Key,
-            Sensores = g.OrderBy(s => s.medido_em).ToList()
-        });
-
-    return Ok(agrupados);
-}
-
-
-
-
+            return Ok(agrupados);
+        }
         [HttpGet]
         public ActionResult<IEnumerable<Sensor>> Get()
         {
             return GetSensoresFromDb(deleted: false);
         }
-
         [HttpGet("trash")]
         public ActionResult<IEnumerable<Sensor>> GetTrash()
         {
             return GetSensoresFromDb(deleted: true);
         }
-
         [HttpGet("{id}")]
         public ActionResult<Sensor> Get(int id)
         {
@@ -124,46 +98,34 @@ public ActionResult<IEnumerable<object>> GetGroupedAll()
             if (sensor == null) return NotFound();
             return sensor;
         }
-
         [HttpPost]
         public IActionResult Post([FromBody] Sensor novoSensor)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
             using (var connection = new OleDbConnection(GetConnectionString()))
-            {
-                connection.Open();
-
+            {  connection.Open();
                 string query = "INSERT INTO sensor (Tipo, Grandeza, valor, medido_em, deleted) VALUES (?, ?, ?, ?, 0)";
                 using (var cmd = new OleDbCommand(query, connection))
-                {
-                    cmd.Parameters.Add("Tipo", OleDbType.VarWChar).Value = novoSensor.Tipo;
+                {cmd.Parameters.Add("Tipo", OleDbType.VarWChar).Value = novoSensor.Tipo;
                     cmd.Parameters.Add("Grandeza", OleDbType.VarWChar).Value = novoSensor.Grandeza;
                     cmd.Parameters.Add("valor", OleDbType.Double).Value = novoSensor.valor;
                     cmd.Parameters.Add("medido_em", OleDbType.Date).Value = novoSensor.medido_em;
-
                     cmd.ExecuteNonQuery();
                 }
-
-                // Obter último ID inserido
                 string getIdQuery = "SELECT @@IDENTITY";
                 using (var cmdId = new OleDbCommand(getIdQuery, connection))
                 {
                     novoSensor.Id = Convert.ToInt32(cmdId.ExecuteScalar());
                 }
             }
-
             return CreatedAtAction(nameof(Get), new { id = novoSensor.Id }, novoSensor);
         }
-
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Sensor sensorAtualizado)
-        {
-            string query = @"UPDATE sensor 
+        { string query = @"UPDATE sensor 
                              SET Tipo = ?, Grandeza = ?, valor = ?, medido_em = ? 
                              WHERE Id = ?";
-
             bool atualizado = ExecuteNonQuery(query, new Dictionary<string, object>
             {
                 { "@Tipo", sensorAtualizado.Tipo },
@@ -172,10 +134,8 @@ public ActionResult<IEnumerable<object>> GetGroupedAll()
                 { "@medido_em", sensorAtualizado.medido_em },
                 { "@Id", id }
             });
-
             return atualizado ? NoContent() : NotFound();
         }
-
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -184,22 +144,17 @@ public ActionResult<IEnumerable<object>> GetGroupedAll()
             {
                 { "@Id", id }
             });
-
             return sucesso ? NoContent() : NotFound();
         }
-
         [HttpPost("restore/{id}")]
         public IActionResult Restore(int id)
-        {
-            string query = "UPDATE sensor SET deleted = false WHERE Id = ?";
+        {string query = "UPDATE sensor SET deleted = false WHERE Id = ?";
             bool sucesso = ExecuteNonQuery(query, new Dictionary<string, object>
             {
                 { "@Id", id }
             });
-
             return sucesso ? NoContent() : NotFound();
         }
-
         [HttpDelete("purge/{id}")]
         public IActionResult Purge(int id)
         {
@@ -208,8 +163,6 @@ public ActionResult<IEnumerable<object>> GetGroupedAll()
             {
                 { "@Id", id }
             });
-
-            return sucesso ? NoContent() : NotFound();
-        }
+            return sucesso ? NoContent() : NotFound();    }
     }
 }

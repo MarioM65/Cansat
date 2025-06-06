@@ -1,0 +1,7 @@
+# Ignorar bin e obj da API
+api/bin/
+api/obj/
+
+# Ignorar bin e obj da APP
+APP/bin/
+APP/obj/
