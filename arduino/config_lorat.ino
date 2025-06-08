@@ -1,6 +1,5 @@
 #include <SoftwareSerial.h>
 SoftwareSerial lora(2, 3); // RX, TX
-
 void sendCommand(String cmd) {
   lora.print(cmd);
   delay(300);
@@ -9,13 +8,11 @@ void sendCommand(String cmd) {
   }
   Serial.println();
 }
-
 void setup() {
   Serial.begin(9600);
   lora.begin(9600);
   delay(500);
   Serial.println("Configurando TRANSMISSOR...");
-
   sendCommand("AT+ADDR=0101\r\n");   // Endereço: 0x0101
   sendCommand("AT+NETID=01\r\n");    // ID da rede
   sendCommand("AT+CHAN=21\r\n");     // Canal 33 = 433MHz + 33*1MHz 
@@ -24,5 +21,4 @@ void setup() {
   sendCommand("AT+SAVE\r\n");        // Salvar
   Serial.println("TRANSMISSOR configurado!");
 }
-
 void loop() {}
