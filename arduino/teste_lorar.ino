@@ -1,10 +1,10 @@
-#include <SoftwareSerial.h>
+#include <HardwareSerial.h>
 
-SoftwareSerial lora(2, 3); // RX, TX
+HardwareSerial lora(1); // UART1
 
 void setup() {
-  Serial.begin(9600);
-  lora.begin(9600);
+  Serial.begin(115200); // Monitor serial
+  lora.begin(9600, SERIAL_8N1, 16, 17); // RX=16, TX=17
   Serial.println("Receptor iniciado");
 }
 
